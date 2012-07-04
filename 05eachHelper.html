@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Handlebars Each Example</title>
+  </head>
+  <body>
+    <h1>Handlebars Each Example!</h1>
+    
+    <div id="list">
+    </div>
+    
+    <script type="text/javascript" src="script/jquery.js"></script>
+    <script type="text/javascript" src="script/handlebars-1.0.0.beta.6.js"></script>
+    
+    <script id="people-template" type="text/x-handlebars-template">
+      {{#each people}}
+        <div class="person">
+            {{this}}
+        </div>
+      {{/each}}
+    </script>
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            // compile our template
+            var template = Handlebars.compile($("#people-template").html());
+
+            var data = {
+                people: [
+              "Alan Johnson" ,
+              "Allison House" ,
+              "Nick Pettit",
+              "Jim Hoskins",
+              "Ryan Carson"
+            ]
+            };
+
+            $('#list').html(template(data));
+        });
+    </script>
+  </body>
+</html>

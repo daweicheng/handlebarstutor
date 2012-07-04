@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Handlebars Block "with" Expressions Example</title>
+  </head>
+  <body>
+    <h1>Handlebars Expressions Example!</h1>
+<!--this is a list which will rendered by handlebars template.    --> 
+    <div id="list">
+    </div>
+    
+    <script type="text/javascript" src="script/jquery.js"></script>
+    <script type="text/javascript" src="script/handlebars-1.0.0.beta.6.js"></script>
+    
+    <script id="people-template" type="text/x-handlebars-template">
+      {{#people}}
+        <div class="person">
+          <p>{{title}}
+          {{#if author}}
+             {{author.first_name}} {{author.last_name}}</p>
+          {{else}}
+             Unknown Author</p>
+          {{/if}}
+        </div>
+      {{/people}}
+    </script>
+    
+    <script type="text/javascript">
+      $(document).ready(function() {
+        
+        // compile our template
+        var template = Handlebars.compile($("#people-template").html());
+
+        var data = {
+          people: [
+            { title: "first people: ", author: {first_name: "Alan", last_name: "Johnson"},  },
+            { title: "second people: ", author: {first_name: "Jack", last_name: "een"},  },
+            { title: "third people: ", teacher: {first_name: "Tom", last_name: "Peter"},  },
+            { title: "fourth people: ", author: {first_name: "Asn", last_name: "Smith"},  },
+          ]
+        };
+        
+        $('#list').html(template(data));
+      });
+    </script>
+  </body>
+</html>
